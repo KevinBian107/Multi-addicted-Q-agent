@@ -19,7 +19,9 @@ Previous study have done similar experiments on an TD agent and seeing teh chane
 
 ### TODOs:
 1. Analysis using the TD paper method
-2. Try to repreoduce and extend the figures
+    - Try to repreoduce and extend the figures
+2. More algorithms or characteristics of neuroscience behavior
+    - UCB?
 
 ### Observation
 1. Interesting phenomenon, seems like once state > 5, the agent is just jumping back and forth between states and seems to stuck there.
