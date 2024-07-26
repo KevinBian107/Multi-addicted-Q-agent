@@ -2,8 +2,9 @@
 
 import matplotlib.pyplot as plt
 import seaborn as sns
-from q_addicted import addicted_q_learning
+from q_addicted import Addicted_Q_Agent
 import numpy as np
+from matplotlib.gridspec import GridSpec
 
 def plot_Q_table(num_states, num_actions, Q_across_trials):
     '''
@@ -36,9 +37,11 @@ def q_rpe_alpha_heatmap(action, alpha, gamma, epsilon, num_trials,
     fig, axes = plt.subplots(3, 2, figsize=(15, 10))
 
     for i, alpha in enumerate(alpha):
-        rpe, Q_across_trials = addicted_q_learning(alpha, gamma, epsilon, num_trials,
-                                            num_states, num_actions, initial_dopamine_surge,
-                                            dopamine_decay_rate, reward_states, drug_reward, addicted)
+        agent = Addicted_Q_Agent(alpha, gamma, epsilon, num_trials,
+                                num_states, num_actions, initial_dopamine_surge,
+                                dopamine_decay_rate, reward_states, drug_reward, addicted)
+        
+        rpe, Q_across_trials = agent.learning()
 
         # Plot heatmap of Q-values over trials
         sns.heatmap(Q_across_trials[:, :, action], ax=axes[i, 0], cmap="viridis", cbar_kws={'label': 'Q-value'})
@@ -53,4 +56,43 @@ def q_rpe_alpha_heatmap(action, alpha, gamma, epsilon, num_trials,
         axes[i, 1].set_ylabel('Trial')
 
     plt.tight_layout()
+    plt.show()
+
+
+def plot_results(rpe, Q_across_trials):
+    '''Plot all major results'''
+
+    num_actions = Q_across_trials.shape[2]
+    num_states = Q_across_trials.shape[1]
+
+    fig = plt.figure(figsize=(18, 10))
+    gs = GridSpec(2, 4, width_ratios=[1, 1, 1, 1], height_ratios=[1, 1], wspace=0.3, hspace=0.4)
+
+    ax1 = fig.add_subplot(gs[:, 0])
+    ax1.plot(rpe.mean(axis=(1, 2)))
+    ax1.set_title('Reward Prediction Error across Trials')
+    ax1.set_xlabel('Trials')
+    ax1.set_ylabel('Average RPE')
+
+    # Q table plot
+    for action in range(num_actions):
+        ax = fig.add_subplot(gs[0, action + 1])
+        for state in range(num_states):
+            ax.plot(Q_across_trials[:, state, action], label=f'State {state}')
+        ax.set_title(f'Q-values for Action {action}')
+        ax.set_xlabel('Trials')
+        ax.set_ylabel('Q-value')
+    ax.legend(loc='upper right', bbox_to_anchor=(1.1, 1))
+
+    
+    # RPE plot
+    for action in range(num_actions):
+        ax = fig.add_subplot(gs[1, action + 1])
+        for state in range(num_states):
+            ax.plot(rpe[:, state, action], label=f'State {state}')
+        ax.set_title(f'RPE for Action {action}')
+        ax.set_xlabel('Trials')
+        ax.set_ylabel('RPE')
+        # ax.legend(loc='upper right', bbox_to_anchor=(1.1, 1))
+
     plt.show()

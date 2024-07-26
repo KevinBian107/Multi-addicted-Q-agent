@@ -6,16 +6,26 @@ Previous study have done similar experiments on an TD agent and seeing teh chane
 - No fancy neural network is used, just looking at the algorithm itself and reasoning with the innate mathamaticla characteristics behind it that resembles human behavior
 
 ### Current Progress:
-1. Made addicted Q-learning agents
+1. Made addicted Q-learning agents class
+    - Make Q-agent class with nice documentations
+    - support functions include
+        - learning,
+        - resimulate average vissits with best Q matrix after learning,
+        - random walk of the agents
 2. Made utils and bunch of plot functions
 3. Made random-walk model to compare with the Q-agent
+4. Analysis
+    - Draw decision graph of different state against trials separate by action differences.
 
 ### TODOs:
 1. Analysis using the TD paper method
-    - Draw decision graph of different state against trials separate by action differences
 2. Try to repreoduce and extend the figures
-3. Make Q-agent class with nice documentations
 
 ### Observation
 1. Interesting phenomenon, seems like once state > 5, the agent is just jumping back and forth between states and seems to stuck there.
     - must use a counter to ensur ethat the while loop actually breaks.
+
+### Preliminaries
+<div style="text-align: center;">
+    <img src="preliminaries/results1.png" alt="Result" style="width:100%; height:auto;">
+</div>
