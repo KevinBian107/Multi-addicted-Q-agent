@@ -27,5 +27,5 @@ Previous study have done similar experiments on an TD agent and seeing teh chane
 
 ### Preliminaries
 <div style="text-align: center;">
-    <img src="preliminaries/results1.png" alt="Result" style="width:100%; height:auto;">
+    <img src="preliminary/results1.png" alt="Result" style="width:100%; height:auto;">
 </div>
