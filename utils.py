@@ -25,7 +25,7 @@ def plot_Q_table(num_states, num_actions, Q_across_trials):
 
 def q_rpe_alpha_heatmap(action, alpha, gamma, epsilon, num_trials,
                 num_states, num_actions, initial_dopamine_surge,
-                dopamine_decay_rate, reward_states, drug_reward, addicted):
+                dopamine_decay_rate, reward_states, drug_reward, addicted, exploration_strategy='epsilon_greedy'):
     '''
     Heat map of q table and rpe table at differnt alphas and different actions
     TODO: make it so that don't need to call with parameter
@@ -39,7 +39,7 @@ def q_rpe_alpha_heatmap(action, alpha, gamma, epsilon, num_trials,
     for i, alpha in enumerate(alpha):
         agent = Addicted_Q_Agent(alpha, gamma, epsilon, num_trials,
                                 num_states, num_actions, initial_dopamine_surge,
-                                dopamine_decay_rate, reward_states, drug_reward, addicted)
+                                dopamine_decay_rate, reward_states, drug_reward, addicted, exploration_strategy)
         
         rpe, Q_across_trials = agent.learning()
 

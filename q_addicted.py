@@ -2,6 +2,7 @@
 
 import numpy as np
 import random
+from typing import Text
 
 class Addicted_Q_Agent:
     def __init__(self,
@@ -15,7 +16,8 @@ class Addicted_Q_Agent:
                  dopamine_decay_rate: float = 0.09,
                  reward_states: list = [9],
                  drug_reward: int = 1,
-                 addicted_agent: bool = True):
+                 addicted_agent: bool = True,
+                 exploration_strategy: Text = 'epsilon_greedy'):
         '''
         Addicted Q Agent class
         
@@ -39,9 +41,12 @@ class Addicted_Q_Agent:
             - reward_states: list object, any number of reward states, must be smaller than num_states
             - drug_reward: reward of the drug rewrad state
             - addicted: boolean argument, simulating an addicting agent of not
+            - exploration_strategy: customized search strategy
         
         methods:
             - learning
+                - supports two type of exploration strategies (boltzmann exploration and epsilon greedy)
+                - support greedy or not for epsilon greedy
             - resimulate average vissits with best Q matrix after learning
             - random walk of the agents
         '''
@@ -57,6 +62,7 @@ class Addicted_Q_Agent:
         self.reward_states = reward_states
         self.drug_reward = drug_reward
         self.addicted_agent = addicted_agent
+        self.exploration_strategy = exploration_strategy
         
         # initialize Q (action values) table, errors, and state_action values
         self.Q = np.zeros((self.num_states, self.num_actions))
@@ -65,13 +71,15 @@ class Addicted_Q_Agent:
 
         assert len(self.reward_states) <= self.num_states, "reward states must be less than number of states"
 
+        assert self.exploration_strategy in ['epsilon_greedy', 'boltzmann_exploration', 'greedy'], "exploration strategy not implemented"
 
-    def learning(self, greedy=False):
+
+    def learning(self, temperature=1):
         '''
         Simulating addicted Q learning agent, using epsilon greedy policy
 
         args:
-            - greedy: boolean argument for only exploration
+            - temperature: for Boltzmann exploration
 
         return:
             - Reward prediction error over trials
@@ -81,11 +89,22 @@ class Addicted_Q_Agent:
         for trial in range(self.num_trials):
             dopamine_surge = self.initial_dopamine_surge * (self.dopamine_decay_rate ** trial)
 
+            greedy = (self.exploration_strategy == 'greedy')
             for state in range(self.num_states):
-                action = np.argmax(self.Q[state])
-                if not greedy:
-                    if random.uniform(0, 1) < self.epsilon:
-                        action = random.randint(0, self.num_actions - 1)
+                
+                if (self.exploration_strategy == 'epsilon_greedy') | (self.exploration_strategy == 'greedy'):
+                    # epsilon greedy or greedy (default)
+                    action = np.argmax(self.Q[state])
+                    if not greedy:
+                        if random.uniform(0, 1) < self.epsilon:
+                            action = random.randint(0, self.num_actions - 1)
+                
+                elif self.exploration_strategy == 'boltzmann_exploration':
+                    # boltzmann_exploration
+                    q_values = self.Q[state]
+                    exp_q = np.exp(q_values / temperature)
+                    action_probabilities = exp_q / np.sum(exp_q)
+                    action = np.random.choice(self.num_actions, p=action_probabilities)
 
                 if action == 0:
                     next_state = min(state + 1, self.num_states - 1)

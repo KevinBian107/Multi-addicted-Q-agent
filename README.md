@@ -9,8 +9,9 @@ Previous study have done similar experiments on an TD agent and seeing teh chane
 1. Made addicted Q-learning agents class
     - Make Q-agent class with nice documentations
     - support functions include
-        - learning,
-        - resimulate average vissits with best Q matrix after learning,
+        - learning
+            - supports three types of search strategies: greedy, epsilon_greedy, and boltzmann exploration
+        - resimulate average vissits with best Q matrix after learning
         - random walk of the agents
 2. Made utils and bunch of plot functions
 3. Made random-walk model to compare with the Q-agent
@@ -35,6 +36,11 @@ Previous study have done similar experiments on an TD agent and seeing teh chane
 </div>
 
 #### Greedy Policy
+<div style="text-align: center;">
+    <img src="preliminary/results2.png" alt="Result" style="width:100%; height:auto;">
+</div>
+
+#### Boltzman_Exploration Policy
 <div style="text-align: center;">
     <img src="preliminary/results2.png" alt="Result" style="width:100%; height:auto;">
 </div>
