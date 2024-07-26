@@ -66,12 +66,12 @@ class Addicted_Q_Agent:
         assert len(self.reward_states) <= self.num_states, "reward states must be less than number of states"
 
 
-    def learning(self):
+    def learning(self, greedy=False):
         '''
         Simulating addicted Q learning agent, using epsilon greedy policy
 
         args:
-            - none
+            - greedy: boolean argument for only exploration
 
         return:
             - Reward prediction error over trials
@@ -82,10 +82,10 @@ class Addicted_Q_Agent:
             dopamine_surge = self.initial_dopamine_surge * (self.dopamine_decay_rate ** trial)
 
             for state in range(self.num_states):
-                if random.uniform(0, 1) < self.epsilon:
-                    action = random.randint(0, self.num_actions - 1)
-                else:
-                    action = np.argmax(self.Q[state])
+                action = np.argmax(self.Q[state])
+                if not greedy:
+                    if random.uniform(0, 1) < self.epsilon:
+                        action = random.randint(0, self.num_actions - 1)
 
                 if action == 0:
                     next_state = min(state + 1, self.num_states - 1)

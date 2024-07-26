@@ -26,6 +26,13 @@ Previous study have done similar experiments on an TD agent and seeing teh chane
     - must use a counter to ensur ethat the while loop actually breaks.
 
 ### Preliminaries
+
+#### Epsilon-greedy Policy
 <div style="text-align: center;">
     <img src="preliminary/results1.png" alt="Result" style="width:100%; height:auto;">
+</div>
+
+#### Greedy Policy
+<div style="text-align: center;">
+    <img src="preliminary/results2.png" alt="Result" style="width:100%; height:auto;">
 </div>
