@@ -3,7 +3,10 @@ Simulating addicted and non-addicted Q learning agent and seeing different behav
 
 Previous study have done similar experiments on an TD agent and seeing teh chanegs in the expected value of the states. However, I think that when there are actions that can be taken, then things changes because with each different action, the agent is at a different state and such differences does make an impact in the decision making process.
 
-- No fancy neural network is used, just looking at the algorithm itself and reasoning with the innate mathamaticla characteristics behind it that resembles human behavior
+- No fancy neural network is used, just looking at the algorithm itself and reasoning with the innate mathamaticla characteristics behind it that resembles human behavior.
+
+### Questions:
+Under a simple discrete chain setting, to what extent does a decreasing-value function drug affect an artificial agent (Q-learning agent equipped with different exploration strategy)’s ability to make decisions and how does such process resemble human decision making under addiction.
 
 ### Current Progress:
 1. Made addicted Q-learning agents class
