@@ -20,35 +20,20 @@ Under a discrete chain multi-addiction states setting, to what extent does a mon
     - Draw decision graphs of different states against trials separate by action differences.
     - Draw heatmaps for different actions across trials
     - Draw average number of visits time and compare with the random walk process.
-
-## TODOs:
-1. Analysis:
-    - plot the rpe average over all trials for the three difeferngt strategy.
-2. More characteristics of neuroscience behavior.
+    - Draw the rpe average over all trials for the three different strategy.
+    - Draw the combined figures
+    - Condcuted analysis...
 
 ## Preliminaries
-### Epsilon-greedy Policy
+### # Figure 1 Heatmap of Q-value for Different Startegy Agent and Reward States
 <div style="text-align: center;">
-    <img src="preliminary/heatmap_epsilon_greedy.png" alt="Result" style="width:100%; height:auto;">
+    <img src="figures/figure1.png" alt="Result" style="width:100%; height:auto;">
 </div>
-
-### Epsilon-greedy Policy (Alternate View)
+### Figure 2 Average RPE for Different Search Strategy Q-agent Under Addiction
 <div style="text-align: center;">
-    <img src="preliminary/results1.png" alt="Result" style="width:100%; height:auto;">
+    <img src="figures/figure2.png" alt="Result" style="width:100%; height:auto;">
 </div>
-
-### Boltzman_Exploration Policy
+### Figure 3: Expected Visits When Natural Reward is Presented
 <div style="text-align: center;">
-    <img src="preliminary/heatmap_boltzmann_exploration.png" alt="Result" style="width:100%; height:auto;">
-</div>
-
-### Average Visits to Stages When Double Natural Reward Presented
-##### Random Walk
-<div style="text-align: center;">
-    <img src="preliminary/random_walk.png" alt="Result" style="width:100%; height:auto;">
-</div>
-
-##### Trained Q-agent
-<div style="text-align: center;">
-    <img src="preliminary/natural_reward_visits.png" alt="Result" style="width:100%; height:auto;">
+    <img src="figures/figure3.png" alt="Result" style="width:100%; height:auto;">
 </div>

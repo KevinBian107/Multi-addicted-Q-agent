@@ -22,7 +22,7 @@ class Addicted_Q_Agent:
         exploration_strategy: Text = "epsilon_greedy",
         if_natural: bool = False,
         natural_reward_states: list = [3],
-        natural_reward_boost: int = 2,
+        natural_reward_boost: float = 2,
     ):
         """
         Addicted Q Agent class

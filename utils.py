@@ -24,7 +24,6 @@ def plot_Q_table(num_states, num_actions, Q_across_trials):
     plt.tight_layout()
     plt.show()
 
-
 def q_rpe_alpha_heatmap(
     action,
     alpha,
@@ -93,7 +92,8 @@ def q_rpe_alpha_heatmap(
     plt.show()
 
 def plot_heatmap(Q_across_trials, rpe):
-    '''heatmap plotting'''
+    '''heatmap plotting for different q-value and rpe over trials at different stages'''
+    
     for action in range(3):
         fig, axes = plt.subplots(1, 2, figsize=(15, 5))
 
@@ -120,9 +120,8 @@ def plot_heatmap(Q_across_trials, rpe):
         plt.tight_layout()
         plt.show()
 
-
-def plot_results(rpe, Q_across_trials):
-    """Plot all major results"""
+def plot_avg_rpe_action(rpe, Q_across_trials):
+    """Plot average rpe and different actions over trials and stages with q-values."""
 
     num_actions = Q_across_trials.shape[2]
     num_states = Q_across_trials.shape[1]
