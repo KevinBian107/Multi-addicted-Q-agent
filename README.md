@@ -8,6 +8,10 @@ No neural network is used in this research project, the core is to just look at 
 ## Research Questions:
 Under a discrete chain multi-addiction states setting, to what extent does a monotonic decreasing drug reward function affect an Q-agent equipped with various exploration strategy’s ability to make decisions and how does such process resemble human decision making under addiction.
 
+<div style="text-align: center;">
+    <img src="figures/demo_chain.png" alt="Result" style="width:100%; height:auto;">
+</div>
+
 ## Current Progress:
 1. Made addicted Q-learning agents class
     - Make Q-agent class with nice documentations
