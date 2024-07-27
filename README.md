@@ -31,7 +31,7 @@ Under a discrete chain multi-addiction states setting, to what extent does a mon
 </div>
 ### Figure 2 Average RPE for Different Search Strategy Q-agent Under Addiction
 <div style="text-align: center;">
-    <img src="figures/figure2.png" alt="Result" style="width:100%; height:auto;">
+    <img src="figures/figure2.png" alt="Result" style="width:20%; height:auto;">
 </div>
 ### Figure 3: Expected Visits When Natural Reward is Presented
 <div style="text-align: center;">
