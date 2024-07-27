@@ -2,7 +2,7 @@
 
 import matplotlib.pyplot as plt
 import seaborn as sns
-from q_addicted import Addicted_Q_Agent
+from src.q_addicted import Addicted_Q_Agent
 import numpy as np
 from matplotlib.gridspec import GridSpec
 
