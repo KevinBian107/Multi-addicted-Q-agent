@@ -25,7 +25,7 @@ Under a discrete chain multi-addiction states setting, to what extent does a mon
     - Condcuted analysis...
 
 ## Preliminaries
-### # Figure 1 Heatmap of Q-value for Different Startegy Agent and Reward States
+### Figure 1 Heatmap of Q-value for Different Startegy Agent and Reward States
 <div style="text-align: center;">
     <img src="figures/figure1.png" alt="Result" style="width:100%; height:auto;">
 </div>
