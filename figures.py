@@ -11,8 +11,8 @@ def plot_heatmap_for_configs(CONFIGS):
 
     labels = ['Epsilon Greedy Addicted',
               'Boltzmann Exploration Addictted',
-              'Epsilon Greedy Natural Reward',
-              'Boltzmann Exploration Natural Reward']
+              'Epsilon Greedy addicted Reward',
+              'Boltzmann Exploration addicted Reward']
     actions = ['Move Forward', 'Move Backward', 'Stay']
     
     agent1 = Addicted_Q_Agent(
@@ -29,8 +29,8 @@ def plot_heatmap_for_configs(CONFIGS):
             CONFIGS['addicted'],
             'epsilon_greedy',
             False,
-            CONFIGS['natural_reward_states'],
-            CONFIGS['natural_reward_boost']
+            CONFIGS['addicted_reward_states'],
+            CONFIGS['addicted_reward_boost']
         )
     agent2 = Addicted_Q_Agent(
             CONFIGS['alpha'],
@@ -46,8 +46,8 @@ def plot_heatmap_for_configs(CONFIGS):
             CONFIGS['addicted'],
             'boltzmann_exploration',
             False,
-            CONFIGS['natural_reward_states'],
-            CONFIGS['natural_reward_boost']
+            CONFIGS['addicted_reward_states'],
+            CONFIGS['addicted_reward_boost']
         )
     agent3 = Addicted_Q_Agent(
             CONFIGS['alpha'],
@@ -63,8 +63,8 @@ def plot_heatmap_for_configs(CONFIGS):
             CONFIGS['addicted'],
             'epsilon_greedy',
             True,
-            CONFIGS['natural_reward_states'],
-            CONFIGS['natural_reward_boost']
+            CONFIGS['addicted_reward_states'],
+            CONFIGS['addicted_reward_boost']
         )
     agent4 = Addicted_Q_Agent(
             CONFIGS['alpha'],
@@ -80,8 +80,8 @@ def plot_heatmap_for_configs(CONFIGS):
             CONFIGS['addicted'],
             'boltzmann_exploration',
             True,
-            CONFIGS['natural_reward_states'],
-            CONFIGS['natural_reward_boost']
+            CONFIGS['addicted_reward_states'],
+            CONFIGS['addicted_reward_boost']
         )
     
     agents = [agent1, agent2, agent3, agent4]
@@ -115,42 +115,57 @@ def plot_heatmap_for_configs(CONFIGS):
 def plot_all_rpe_avg(CONFIGS):
     '''Function for outputting figure 2'''
 
-    all_rpe=[]
+    all_rpe_addicted = []
+    all_rpe_non_addicted = []
     strategies = ['greedy', 'epsilon_greedy', 'boltzmann_exploration']
     strategies_name = ['Greedy', 'Epsilon Greedy', 'Boltzmann Exploration']
     colors = ['r', 'g', 'b']
     
     for strategy in strategies:
-        agent = Addicted_Q_Agent(
-        CONFIGS['alpha'],
-        CONFIGS['gamma'],
-        CONFIGS['epsilon'],
-        500,
-        CONFIGS['num_states'],
-        CONFIGS['num_actions'],
-        CONFIGS['initial_dopamine_surge'],
-        CONFIGS['dopamine_decay_rate'],
-        CONFIGS['reward_states'],
-        CONFIGS['drug_reward'],
-        CONFIGS['addicted'],
-        strategy,
-        False,
-        CONFIGS['natural_reward_states'],
-        CONFIGS['natural_reward_boost']
-        )
-        rpe, _ = agent.learning()
-        all_rpe.append(rpe)
+        for addicted, all_rpe in zip([True, False], [all_rpe_addicted, all_rpe_non_addicted]):
+            agent = Addicted_Q_Agent(
+                CONFIGS['alpha'],
+                CONFIGS['gamma'],
+                CONFIGS['epsilon'],
+                500,
+                CONFIGS['num_states'],
+                CONFIGS['num_actions'],
+                CONFIGS['initial_dopamine_surge'],
+                CONFIGS['dopamine_decay_rate'],
+                CONFIGS['reward_states'],
+                CONFIGS['drug_reward'],
+                addicted,
+                strategy,
+                False,
+                CONFIGS['natural_reward_states'],
+                CONFIGS['natural_reward_boost']
+            )
+            rpe, _ = agent.learning()
+            all_rpe.append(rpe)
         
-    average_rpe = [rpe.mean(axis=(1, 2)) for rpe in all_rpe]
+    # average RPE
+    average_rpe_addicted = [rpe.mean(axis=(1, 2)) for rpe in all_rpe_addicted]
+    average_rpe_non_addicted = [rpe.mean(axis=(1, 2)) for rpe in all_rpe_non_addicted]
 
-    plt.figure(figsize=(5, 6))
-    for strategy, avg_rpe, color in zip(strategies_name, average_rpe, colors):
-        plt.plot(avg_rpe, label=strategy, color=color)
-
-    plt.xlabel("Trials")
-    plt.ylabel("Average Reward Prediction Error")
-    plt.legend()
-    plt.title("Average RPE for Different Strategies")
+    fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+    
+    # plot addicted condition
+    for i, (strategy, avg_rpe, color) in enumerate(zip(strategies_name, average_rpe_addicted, colors)):
+        axes[0].plot(avg_rpe, label=strategy, color=color)
+    axes[0].set_xlabel("Trials")
+    axes[0].set_ylabel("Average Reward Prediction Error")
+    axes[0].legend()
+    axes[0].set_title("Average RPE for Addicted Condition")
+    
+    # plot non-addicted condition
+    for i, (strategy, avg_rpe, color) in enumerate(zip(strategies_name, average_rpe_non_addicted, colors)):
+        axes[1].plot(avg_rpe, label=strategy, color=color)
+    axes[1].set_xlabel("Trials")
+    axes[1].set_ylabel("Average Reward Prediction Error")
+    axes[1].legend()
+    axes[1].set_title("Average RPE for Non-addicted Condition")
+    
+    plt.tight_layout()
     plt.show()
 
 
@@ -170,9 +185,9 @@ def plot_all_expected_visits(CONFIGS):
         CONFIGS['drug_reward'],
         CONFIGS['addicted'],
         'epsilon_greedy',
-        CONFIGS['if_natural'],
-        CONFIGS['natural_reward_states'],
-        CONFIGS['natural_reward_boost']
+        CONFIGS['if_addicted'],
+        CONFIGS['addicted_reward_states'],
+        CONFIGS['addicted_reward_boost']
     )
     agent2 = Addicted_Q_Agent(
         CONFIGS['alpha'],
@@ -187,9 +202,9 @@ def plot_all_expected_visits(CONFIGS):
         CONFIGS['drug_reward'],
         CONFIGS['addicted'],
         'boltzmann_exploration',
-        CONFIGS['if_natural'],
-        CONFIGS['natural_reward_states'],
-        CONFIGS['natural_reward_boost']
+        CONFIGS['if_addicted'],
+        CONFIGS['addicted_reward_states'],
+        CONFIGS['addicted_reward_boost']
     )
 
     agent1.learning()
