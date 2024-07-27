@@ -5,10 +5,10 @@ Previous study have done similar experiments on an TD agent and seeing teh chane
 
 No neural network is used in this research project, the core is to just look at the algorithm itself and reasoning with the innate mathamatical properties and characteristics behind the algorithm and try to find the aspects that resembles human behavior.
 
-### Research Questions:
+## Research Questions:
 Under a discrete chain multi-addiction states setting, to what extent does a monotonic decreasing drug reward function affect an Q-agent equipped with various exploration strategy’s ability to make decisions and how does such process resemble human decision making under addiction.
 
-### Current Progress:
+## Current Progress:
 1. Made addicted Q-learning agents class
     - Make Q-agent class with nice documentations
     - support functions include
@@ -21,25 +21,25 @@ Under a discrete chain multi-addiction states setting, to what extent does a mon
     - Draw heatmaps for different actions across trials
     - Draw average number of visits time and compare with the random walk process.
 
-### TODOs:
+## TODOs:
 1. Analysis:
     - plot the rpe average over all trials for the three difeferngt strategy.
 2. More characteristics of neuroscience behavior.
 
-### Preliminaries
-#### Epsilon-greedy Policy
+## Preliminaries
+### Epsilon-greedy Policy
 <div style="text-align: center;">
     <img src="preliminary/heatmap_epsilon_greedy.png" alt="Result" style="width:100%; height:auto;">
 </div>
 
 ### Epsilon-greedy Policy (Alternate View)
 <div style="text-align: center;">
-    <img src="preliminary/heatmap_epsilon_greedy.png" alt="Result" style="width:100%; height:auto;">
+    <img src="preliminary/results1.png" alt="Result" style="width:100%; height:auto;">
 </div>
 
-#### Boltzman_Exploration Policy
+### Boltzman_Exploration Policy
 <div style="text-align: center;">
-    <img src="preliminary/results1.png" alt="Result" style="width:100%; height:auto;">
+    <img src="preliminary/heatmap_boltzmann_exploration.png" alt="Result" style="width:100%; height:auto;">
 </div>
 
 ### Average Visits to Stages When Double Natural Reward Presented
