@@ -6,7 +6,7 @@ Previous study have done similar experiments on an TD agent and seeing teh chane
 No neural network is used in this research project, the core is to just look at the algorithm itself and reasoning with the innate mathamatical properties and characteristics behind the algorithm and try to find the aspects that resembles human behavior.
 
 ## Research Questions:
-Under a discrete chain multi-addiction states setting, to what extent does a monotonic decreasing drug reward function affect an Q-agent equipped with various exploration strategy’s ability to make decisions and how does such process resemble human decision making under addiction.
+Under a discrete chain multi-addiction states setting, to what extent does a monotonic decreasing dopamine surge function affect an Q-agent equipped with various exploration strategy’s ability to make decisions and how does such process resemble human decision making under addiction.
 
 <div style="text-align: center;">
     <img src="figures/demo_chain.png" alt="Result" style="width:100%; height:auto;">
@@ -29,6 +29,8 @@ Under a discrete chain multi-addiction states setting, to what extent does a mon
     - Condcuted analysis...
 
 ## Preliminaries
+Manuscript [here](https://kevinbian107.github.io/assets/addicted_rl_manuscrit.pdf)
+
 ### Figure 1 Heatmap of Q-value for Different Startegy Agent and Reward States
 <div style="text-align: center;">
     <img src="figures/figure1.png" alt="Result" style="width:100%; height:auto;">
