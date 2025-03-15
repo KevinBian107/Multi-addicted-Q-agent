@@ -1,5 +1,5 @@
 # Discrete Multi-addiction State Q-agent Decision Making
-Manuscript [here](https://kevinbian107.github.io/assets/addicted_rl_manuscrit.pdf)
+Manuscript [here](manuscript/Manuscript.pdf)
 
 Simulating addicted and non-addicted Q learning agent and seeing different behavior effects in algorithm.
 
